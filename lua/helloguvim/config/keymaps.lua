@@ -13,13 +13,11 @@ local function map(mode, lhs, rhs, opts)
   end
 end
 
-map("i", "jj", "<esc>zz", { silent = true })
+map("i", "jj", "<esc>", { silent = true })
 
 -- better up/down
-map("n", "j", "v:count == 0 ? 'gjzz' : 'j'", { expr = true, silent = true })
-map("n", "k", "v:count == 0 ? 'gkzz' : 'k'", { expr = true, silent = true })
--- map("n", "j", "gjzz", { silent = true })
--- map("n", "k", "gkzz", {  silent = true })
+map("n", "j", "v:count == 0 ? 'j' : 'gj'", { expr = true, silent = true })
+map("n", "k", "v:count == 0 ? 'k' : 'gk'", { expr = true, silent = true })
 
 -- 移至行首行尾
 map({ "n", "v" }, "H", "^", { silent = true })
@@ -96,7 +94,7 @@ map("n", "<leader>b7", "<cmd>BufferLineGoToBuffer 7<cr>", { desc = "go to buffer
 map("n", "<leader>b9", "<cmd>BufferLineGoToBuffer 9<cr>", { desc = "go to buffer 9", silent = true })
 
 -- Clear search with <esc>
-map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>zz", { noremap = true, desc = "Escape and clear hlsearch" })
+map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { noremap = true, desc = "Escape and clear hlsearch" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
