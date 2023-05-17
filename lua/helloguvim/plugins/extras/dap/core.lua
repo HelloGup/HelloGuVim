@@ -14,17 +14,20 @@ return {
         layouts = {
           {
             elements = {
-              "scopes",
-              -- 'stacks',
-              "watches",
-              "breakpoints",
+              -- size 是长占比
+              { id = "console", size = 0.35 },
+              -- 显示线程 栈帧 范围的命令
+              { id = "repl", size = 0.65 },
             },
-            size = 30,
+            --宽
+            size = 40,
             position = "left",
           },
+
           {
             elements = {
-              "console",
+              { id = "watches", size = 0.75 },
+              { id = "breakpoints", size = 0.25 },
             },
             size = 30,
             position = "right",
@@ -36,32 +39,19 @@ return {
           -- },
           {
             elements = {
-              "repl",
+              "scopes",
             },
             size = 15,
             position = "bottom",
           },
         },
-        -- sidebar = {
-        -- 更改侧边栏元素的顺序
-        --   elements = {
-        --     -- Provide as ID strings or tables with "id" and "size" keys
-        --     {
-        --       id = "scopes",
-        --       size = 0.35, -- Can be float or integer > 1
-        --     },
-        --     { id = "stacks", size = 0.35 },
-        --     { id = "watches", size = 0.15 },
-        --     { id = "breakpoints", size = 0.15 },
-        --   },
-        --   size = 40,
-        --   position = "left", -- Can be "left", "right", "top", "bottom"
+
+        -- tray = {
+        --   elements = { "repl" },
+        --   size = 5,
+        --   position = "bottom", -- Can be "left", "right", "top", "bottom"
         -- },
-        tray = {
-          elements = { "repl" },
-          size = 5,
-          position = "bottom", -- Can be "left", "right", "top", "bottom"
-        },
+
         floating = {
           max_height = nil, -- These can be integers or a float between 0 and 1.
           max_width = nil, -- Floats will be treated as percentage of your screen.
@@ -132,7 +122,7 @@ return {
         ensure_installed = {
           -- Update this to ensure that you have the debuggers for the langs you want
           -- 自动安装的适配器
-          "codelldb",
+          --
         },
       },
     },
