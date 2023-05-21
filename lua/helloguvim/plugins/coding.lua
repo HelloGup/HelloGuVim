@@ -166,10 +166,11 @@ return {
           }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         }),
 
+        -- 补全来源
         sources = cmp.config.sources({
-          { name = "nvim_lsp", priority = 1000 },
-          { name = "luasnip", priority = 750 },
-          { name = "buffer", priority = 500 },
+          -- { name = "nvim_lsp", priority = 1000 },
+          -- { name = "luasnip", priority = 750 },
+          -- { name = "buffer", priority = 500 },
           { name = "path", priority = 250 },
         }),
         formatting = {
@@ -241,22 +242,27 @@ return {
   --   end,
   -- },
 
-  -- comments
   -- 注释
-  { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
   {
-    "echasnovski/mini.comment",
-    event = "VeryLazy",
+    "numToStr/Comment.nvim",
     opts = {
-      hooks = {
-        pre = function()
-          require("ts_context_commentstring.internal").update_commentstring({})
-        end,
+      opleader = {
+        line = "gc",
+        block = "gb",
+      },
+      toggler = {
+        line = "gcc",
+        block = "gcb",
+      },
+      extra = {
+        -- 上一行创建注释
+        above = "gck",
+        -- 下一行创建注释
+        below = "gcj",
+        -- 行尾创建注释
+        eol = "gca",
       },
     },
-    config = function(_, opts)
-      require("mini.comment").setup(opts)
-    end,
   },
 
   -- better text-objects

@@ -126,8 +126,11 @@ map("i", ";", ";<c-g>u")
 map({ "i", "v", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save file" })
 
 -- better indenting
+--快速缩进
 map("v", "<", "<gv")
 map("v", ">", ">gv")
+map("n", "<", "<<", { noremap = true })
+map("n", ">", ">>", { noremap = true })
 
 -- lazy
 map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
@@ -148,16 +151,25 @@ if not Util.has("trouble.nvim") then
 end
 
 -- toggle options
-map("n", "<leader>us", function() Util.toggle("spell") end, { desc = "Toggle Spelling" })
+map("n", "<leader>us", function()
+  Util.toggle("spell")
+end, { desc = "Toggle Spelling" })
 -- 开启关闭折行
-map("n", "<leader>uw", function() Util.toggle("wrap") end, { desc = "Toggle Word Wrap" })
-  -- 开启关闭相对行号
-map("n", "<leader>ul", function() Util.toggle("relativenumber", true) Util.toggle("number") end, { desc = "Toggle Line Numbers" })
+map("n", "<leader>uw", function()
+  Util.toggle("wrap")
+end, { desc = "Toggle Word Wrap" })
+-- 开启关闭相对行号
+map("n", "<leader>ul", function()
+  Util.toggle("relativenumber", true)
+  Util.toggle("number")
+end, { desc = "Toggle Line Numbers" })
 -- 开启关闭显示错误信息
 map("n", "<leader>ud", Util.toggle_diagnostics, { desc = "Toggle Diagnostics" })
 local conceallevel = vim.o.conceallevel > 0 and vim.o.conceallevel or 3
 
-map("n", "<leader>uc", function() Util.toggle("conceallevel", false, {0, conceallevel}) end, { desc = "Toggle Conceal" })
+map("n", "<leader>uc", function()
+  Util.toggle("conceallevel", false, { 0, conceallevel })
+end, { desc = "Toggle Conceal" })
 
 -- quit
 map("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
@@ -173,13 +185,17 @@ end
 -- map("t", "<esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- Copy all
-map("n", "<C-c>", "<cmd> %y+ <CR><CR>", { desc = "copy all",silent = true })
+map("n", "<C-c>", "<cmd> %y+ <CR><CR>", { desc = "copy all", silent = true })
 
 -- windows
 map("n", "<leader>wq", "<C-W>o", { desc = "Delete other window" })
 map("n", "<leader>wd", "<C-W>c", { desc = "Delete current window" })
+-- 分屏
 map("n", "<leader>-", "<C-W>v", { desc = "Split window below" })
 map("n", "<leader>|", "<C-W>s", { desc = "Split window right" })
+--水平、垂直分屏布局切换
+-- map("n", xxx, "<C-w>b<C-w>K", { noremap = true })
+-- map("n", xxx, "<C-w>b<C-w>H", { noremap = true })
 
 -- tabs
 -- map("n", "<leader><tab>l", "<cmd>tablast<cr>", { desc = "Last Tab" })
@@ -190,11 +206,11 @@ map("n", "<leader>|", "<C-W>s", { desc = "Split window right" })
 -- map("n", "<leader><tab>[", "<cmd>tabprevious<cr>", { desc = "Previous Tab" })
 
 -- 折叠
-map('n', 'zR', require('ufo').openAllFolds)
-map('n', 'zM', require('ufo').closeAllFolds)
+map("n", "zR", require("ufo").openAllFolds)
+map("n", "zM", require("ufo").closeAllFolds)
 
 -- toggleterm 退出终端模式
-map("t","<ESC>","<c-\\><c-n>",{desc="Escape term insert mode",silent = true})
+map("t", "<ESC>", "<c-\\><c-n>", { desc = "Escape term insert mode", silent = true })
 
 -- 注释上加========
-map("v","<leader>cb","`<`>``yyP_Wv$r=$5a=yy``p",{desc="CommentBox",silent = true})
+map("v", "<leader>cb", "`<`>``yyP_Wv$r=$5a=yy``p", { desc = "CommentBox", silent = true })
